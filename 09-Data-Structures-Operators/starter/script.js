@@ -115,13 +115,98 @@ const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 const {
   odds: { team1, x: draw, team2 },
 } = game;
-console.log(team1, draw, team2);
+//console.log(team1, draw, team2);
 // 6
 const printGoals = function (...players) {
-  console.log(`${players.length} goals were scored`);
+  //console.log(`${players.length} goals were scored`);
 };
 printGoals('Davies', 'Muller');
 
 // 7
-game.odds.team1 > game.odds.team2 && console.log('team1 more likely to win');
-game.odds.team1 < game.odds.team2 && console.log('team2 more likely to win');
+//game.odds.team1 > game.odds.team2 && console.log('team1 more likely to win');
+//game.odds.team1 < game.odds.team2 && console.log('team2 more likely to win');
+//
+//Coding Challenge #2
+// 1
+//for (const [index, scorer] of Object.entries(game.scored))
+//console.log(`Goal ${Number(index) + 1}: ${scorer}`);
+// 2
+//console.log(game.odds);
+//console.log(Object.values(game.odds).length);
+let sum = 0;
+for (const value of Object.values(game.odds)) {
+  sum += value;
+}
+//console.log(`Average odds is ${sum / Object.values(game.odds).length}`);
+//3
+for (const [team, value] of Object.entries(game.odds)) {
+  if (game[team]) {
+    //console.log(`Odd of victory ${game[team]}: ${value}`);
+  } else {
+    //console.log(`Odd of draw: ${value}`);
+  }
+}
+//3 Correction
+for (const [team, value] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory of ${game[team]}`;
+  //console.log(`Odd of ${teamStr}: ${value}`);
+}
+
+//QuizzMap
+const question = new Map([
+  ['question', 'What is the best coding lang in the world?'],
+  [1, 'c'],
+  [2, 'java'],
+  [3, 'javascript'],
+  ['correct', 3],
+  [true, 'You won!'],
+  [false, 'Try again!'],
+]);
+//console.log(question);
+for (const [key, value] of question) {
+  // We display only the 3 first (key = number)
+  //if (typeof key === 'number') console.log(`${key}:${value}`);
+}
+// User choice
+//const answer = Number(prompt('Your answer:'));
+// We analyse the choice - best practice
+//console.log(question.get(answer === question.get('correct')));
+
+// Coding Challenge #3
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+// 1
+// We convert the Map values to an array
+const events = [...new Set(gameEvents.values())];
+//console.log(events);
+
+// 2
+gameEvents.delete(64);
+//console.log(gameEvents);
+
+// 3
+//console.log(
+//  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+//);
+
+// 4
+for (const [min, event] of gameEvents) {
+  const str = min < 45 ? `[FIRST HALF]` : `[SECOND HALF]`;
+  //console.log(`${str} ${min}:${event}`);
+}
+// Coding Challenge #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+let text = document.querySelector('textarea').value;
+text = 'hello';
