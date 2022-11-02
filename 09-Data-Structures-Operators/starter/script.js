@@ -208,5 +208,37 @@ for (const [min, event] of gameEvents) {
 // Coding Challenge #4
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
-let text = document.querySelector('textarea').value;
-text = 'hello';
+
+const button = document.querySelector('button');
+let text = document.querySelector('textarea');
+
+button.textContent = 'Click';
+console.log(button);
+console.log(document.querySelector('textarea'));
+
+button.addEventListener('click', function () {
+  text.value = convert(text.value);
+});
+
+function convert(text) {
+  let result = '';
+  let i = 1;
+  const words = text.toLowerCase().split('\n');
+  for (const word of words) {
+    console.log(word);
+    if (word.includes('_')) {
+      // convert
+      const pos = word.indexOf('_');
+      let newWord = word.trim().replace('_', '');
+      newWord =
+        newWord.slice(0, pos) +
+        newWord[pos].toUpperCase() +
+        newWord.slice(pos + 1, word.length - 1).padEnd(20, ' ');
+      result += `${newWord}\n`;
+    } else {
+      result += `${word.trim()}\n`.padEnd(20, ' ');
+    }
+    i++;
+  }
+  return result;
+}
